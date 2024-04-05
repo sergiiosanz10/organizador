@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Truculenta:opsz,wght@12..72,100..900&display=swap');
+.titulo{
+    margin-top: 2vh;
+    color: #333;
+    font-family: "Truculenta", sans-serif;
+    font-size: 3em;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    padding-bottom: 0;
+    padding-left: 0;
+    height: 15vh;
+}
+.header h1 {
+    margin-right: 2%;
+}
+.nueva-tarea {
+    padding: 10px 15px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-right: 1%;
+}
+
+.filtro {
+    padding: 10px 15px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.nueva-tarea:hover {
+    background-color: #0056b3;  
+}
+
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5); 
+}
+
+.modal-content {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%; 
+    max-width: 500px; 
+}
+
+.modal-content input {
+    margin: 10px 0;
+    padding: 10px;
+    width: 95%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.modal-content button {
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    color: white;
+    background-color: #007BFF;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-content button:hover {
+    background-color: #0056b3;
+}
+
+
+
+/* Tareas.css */
+.tareasContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    max-width: 85%;
+    margin: auto;
+}
+
+.mostrarTareas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f5f5f5;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.mostrarTareas h2 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.mostrarTareas p {
+    margin: 0;
+    color: #666;
+    font-size: 1.2em;
+}
+
+.mostrarTareas .estado {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.mostrarTareas input {
+    border: none;
+    background-color: #f5f5f5;
+    padding: 10px;
+    margin-right: 20px;
+    flex-grow: 1;
+    border-bottom: 2px solid #333; 
+    font-size: 1.2em;
+}
+
+.time{
+    width: 1.10%;
+}
+
+.mostrarTareas input:focus {
+    outline: none;
+    border-bottom: 2px solid #949494;
+}
+
+.botonEstado {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    color: white;
+}
+
+.botonEstado.completado {
+    background-color: #4caf50;
+}
+.botonEstado.completado:hover {
+    background-color: #3f9643;
+}
+
+.botonEstado.pendiente {
+    background-color: #ff9800;
+}
+.botonEstado.pendiente:hover {
+    background-color: #ce7b00;
+}
+
+.botonEliminar {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    color: white;
+    background-color: #f44336; /* color rojo */
+    margin-left: 2%;
+}
+
+.botonEliminar:hover {
+    background-color: #d32f2f;
+}
+
+.paleta {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    color: white;
+    background: #43859b;
+    margin-right: 2%;
+}
+
+.paleta:hover {
+    background-color: #2d6375;
+}
+
+
+.fecha{
+    font-family: "Truculenta", sans-serif;
+    width: 100%;
+    font-size: 1.2em;
+}
+.fecha hr {
+    border: none;
+    border-top: 1px solid #000;
+    color: #fff;
+    background-color: #fff;
+    height: 1px;
+    width: 100%;
+    width: 100%;
+}
+
+.colorLabel{
+    display: block;
+    font-size: 16px;
+}
+
+.colorInput {
+    width: 1%;
+    height: 50px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+.date{
+    width: 3%;
+}
+.etiqueta{
+    width: 5%;
+}
+
+.mi-clase-select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.dropdown {
+    margin-top: 0.50%;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 1;
+    width: 200px; /* Ajusta el ancho del menú desplegable */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Añade una sombra al menú desplegable */
+}
+
+.dropdown p {
+    padding: 10px; /* Añade un padding a las opciones */
+    margin: 0; /* Elimina los márgenes */
+    cursor: pointer; /* Cambia el cursor a un puntero cuando pasas el ratón por encima */
+}
+
+.dropdown p:hover {
+    background-color: #ddd; /* Cambia el color de fondo de las opciones al pasar el ratón por encima */
+}

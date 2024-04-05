@@ -1,0 +1,29 @@
+.titulo{
+    margin-top: 2vh;
+    color: #333;
+    font-family: "Truculenta", sans-serif;
+    font-size: 3em;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    padding-bottom: 0;
+    padding-left: 0;
+    height: 15vh;
+}
+.header h1 {
+    margin-right: 2%;
+}
+
+.colorInput {
+    width: 1%;
+    height: 50px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+

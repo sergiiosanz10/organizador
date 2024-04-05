@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+
+import Login from './components/login';
+import Menu from './components/menu';
 
 function App() {
+  const [isLogged, setIsLogged] = useState(false);
+
+  const acceder = (estado) => {
+    setIsLogged(estado);
+  }
+
+  const logout = () => {
+    localStorage.removeItem('token');
+    setIsLogged(false);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/login" element={isLogged ? <Navigate to="/" /> : <Login acceder={acceder} />} />
+        <Route path="/" element={!isLogged ? <Navigate to="/login" /> : <Menu acceder={acceder} />} />
+      </Routes>
+    </Router>
   );
 }
 
