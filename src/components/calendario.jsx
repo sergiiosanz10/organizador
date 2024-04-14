@@ -77,7 +77,7 @@ export default function Calendario() {
     const handleEventDrop = async (info) => {
         const { event } = info;
 
-        // Update the event in your state
+        // Actualizar el estado de eventos para reflejar el cambio
         const updatedEvents = events.map((e) => {
             if (e.id === event.id) {
                 return {
@@ -162,6 +162,7 @@ export default function Calendario() {
         }
     };
     //####################################################################
+
     const [selectedTask, setSelectedTask] = useState(null); // Nuevo estado para almacenar la tarea seleccionada
 
 
@@ -249,6 +250,7 @@ export default function Calendario() {
             )}
         </>
     )
+    
     //ESTILO PARA LOS EVENTOS DEL CALENDARIO
     function renderEventContent(eventInfo) {
         const estado = eventInfo.event.extendedProps.estado;

@@ -4,7 +4,7 @@
 .body{
     width: 100%;
     height: 100vh;
-    padding-top: 5vh; /* Añade esto, ajusta el valor a tus necesidades */
+    padding-top: 5vh; 
 }
 .Navigation {
     width: 100%;
@@ -55,6 +55,7 @@
 }
 
 .taski{
+    font-family: "Alkatra", system-ui;
     text-decoration: underline;
 }
 

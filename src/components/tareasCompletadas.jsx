@@ -30,13 +30,13 @@ export default function Completadas() {
         fetch(`http://localhost/completadas.php?userId=${userId}`)
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                    throw new Error('Conexión rechazada por el servidor. Intente más tarde.');
                 }
                 return response.json();
             })
             .then(data => setTareas(data))
             .catch(error => {
-                console.error('There has been a problem with your fetch operation:', error);
+                console.error('Hubo un problema al mostrar las tareas:', error);
             });
     }, []);
 
@@ -54,7 +54,7 @@ export default function Completadas() {
             "tareaId": tarea.tareaId,
             "estado": tarea.Estado
         };
-        const respuestaJson = await enviarData(URL_MODIESTADO, data);
+        await enviarData(URL_MODIESTADO, data);
     };
     //####################################################################
 
@@ -77,7 +77,7 @@ export default function Completadas() {
             "horaFin": tarea.HoraFin,
             "fecha": tarea.Fecha
         };
-        const respuestaJson = await enviarData(URL_MODITAREA, data);
+        await enviarData(URL_MODITAREA, data);
     };
 
     //####################################################################
@@ -91,7 +91,7 @@ export default function Completadas() {
 
         // Elimina la tarea de la base de datos
         const data = { "tareaId": tareaId };
-        const respuestaJson = await enviarData(URL_DELETETAREA, data);
+        await enviarData(URL_DELETETAREA, data);
 
         // Solicita la lista actualizada de tareas al servidor
         fetch(`http://localhost/mostrarTareas.php?userId=${userId}`)
@@ -129,7 +129,7 @@ export default function Completadas() {
                     "color": tarea.Color,
                 };
     
-                const respuestaJson = await enviarData(URL_COLOR, data);
+                await enviarData(URL_COLOR, data);
     
                 // Actualiza los colores en la paleta
                 fetch(`http://localhost/mostrarColores.php?userId=${userId}`)

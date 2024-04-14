@@ -182,7 +182,7 @@
     cursor: pointer;
     font-size: 1em;
     color: white;
-    background-color: #f44336; /* color rojo */
+    background-color: #f44336; 
     margin-left: 2%;
 }
 
@@ -255,16 +255,16 @@
     border: 1px solid #ccc;
     padding: 10px;
     z-index: 1;
-    width: 200px; /* Ajusta el ancho del menú desplegable */
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Añade una sombra al menú desplegable */
+    width: 200px; 
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); 
 }
 
 .dropdown p {
-    padding: 10px; /* Añade un padding a las opciones */
-    margin: 0; /* Elimina los márgenes */
-    cursor: pointer; /* Cambia el cursor a un puntero cuando pasas el ratón por encima */
+    padding: 10px; 
+    margin: 0; 
+    cursor: pointer; 
 }
 
 .dropdown p:hover {
-    background-color: #ddd; /* Cambia el color de fondo de las opciones al pasar el ratón por encima */
+    background-color: #ddd;
 }

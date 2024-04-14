@@ -69,7 +69,7 @@ export default function Tareas() {
             "estado": '0',
             "userId": userId
         };
-        const respuestaJson = await enviarData(URL_TAREA, tarea);
+        await enviarData(URL_TAREA, tarea);
 
         // Limpia el formulario
         setNombre('');
@@ -107,13 +107,13 @@ export default function Tareas() {
         fetch(`http://localhost/mostrarTareas.php?userId=${userId}`)
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                    throw new Error('Conexión rechazada por el servidor');
                 }
                 return response.json();
             })
             .then(data => setTareas(data))
             .catch(error => {
-                console.error('There has been a problem with your fetch operation:', error);
+                console.error('Hubo un problema al mostrar las tareas :', error);
             });
     }, []);
 
@@ -141,7 +141,7 @@ export default function Tareas() {
             "tareaId": tarea.tareaId,
             "estado": tarea.Estado
         };
-        const respuestaJson = await enviarData(URL_MODIESTADO, data);
+        await enviarData(URL_MODIESTADO, data);
     };
     //####################################################################
 
@@ -176,7 +176,7 @@ export default function Tareas() {
             "horaFin": tarea.HoraFin,
             "fecha": tarea.Fecha
         };
-        const respuestaJson = await enviarData(URL_MODITAREA, data);
+        await enviarData(URL_MODITAREA, data);
 
         fetch(`http://localhost/etiquetas.php?userId=${userId}`)
             .then(response => response.json())
@@ -200,7 +200,7 @@ export default function Tareas() {
             "userId": userId,
             "etiqueta": Etiqueta
         };
-        const respuestaJson = await enviarData(URL_DELETETAREA, data);
+        await enviarData(URL_DELETETAREA, data);
 
         // Solicita la lista actualizada de tareas al servidor
         fetch(`http://localhost/mostrarTareas.php?userId=${userId}`)
@@ -270,7 +270,7 @@ export default function Tareas() {
         console.log(data);
 
         // Actualiza las tareas filtradas
-        fetch(`http://localhost/filtrarEtiquetas.php?userId=${userId}`)
+        fetch(`http://localhost/filtrarEtiquetas.php?etiqueta=${etiqueta}&userId=${userId}`)
             .then(response => response.json())
             .then(data => {
                 setTareas(data);
@@ -291,7 +291,7 @@ export default function Tareas() {
             "userId": userId,
             "etiqueta": Etiqueta
         };
-        const respuestaJson = await enviarData(URL_DELETETAREA, data);
+        await enviarData(URL_DELETETAREA, data);
 
         // Actualiza serverResponse para reflejar la tarea eliminada
         const updatedServerResponse = serverResponse.filter((tarea, i) => i !== index);
@@ -323,7 +323,7 @@ export default function Tareas() {
                 "color": tarea.Color,
             };
 
-            const respuestaJson = await enviarData(URL_COLOR, data);
+            await enviarData(URL_COLOR, data);
 
             // Actualiza los colores en la paleta
             fetch(`http://localhost/mostrarColores.php?userId=${userId}`)

@@ -11,11 +11,6 @@ function App() {
     setIsLogged(estado);
   }
 
-  const logout = () => {
-    localStorage.removeItem('token');
-    setIsLogged(false);
-  }
-
   return (
     <Router>
       <Routes>

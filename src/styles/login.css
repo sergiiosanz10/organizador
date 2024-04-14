@@ -17,7 +17,6 @@ html, body {
     margin-top: 14vh;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); 
 }
-/* login.css */
 .login {
     display: flex;
     justify-content: center;
@@ -80,30 +79,32 @@ html, body {
     border-bottom: 1px solid #000; 
     border-radius: 0;
     height: 20px;
+    width: 50%;
     font-size: 18px;
     outline: none;
+    padding-top: 5px;
     transition: border-bottom 0.3s ease, transform 0.3s ease;
 }
 .form-control::placeholder {
-    color: #303030; /* placeholder blanco */
+    color: #303030;
 }
 
 .form-control:focus {
-    border-bottom: 2px solid #000; /* línea inferior negra cuando está enfocado */
+    border-bottom: 2px solid #000; 
     transform: scale(1.05);
 }
 
 .login-button {
     display: flex;
-    justify-content: space-around; /* Alinea los elementos uniformemente en el contenedor */
+    justify-content: space-around; 
     margin-top: 20px;
 }
 
 .btn {
     padding: 10px 20px;
     font-size: 18px;
-    color: #fff; /* texto blanco */
-    background-color: #000; /* fondo negro */
+    color: #fff; 
+    background-color: #000; 
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -111,5 +112,5 @@ html, body {
 }
 
 .btn:hover {
-    background-color: #333; /* fondo gris oscuro al pasar el ratón */
+    background-color: #333; 
 }
