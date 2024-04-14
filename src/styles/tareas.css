@@ -72,6 +72,7 @@
     width: 95%;
     border: 1px solid #ddd;
     border-radius: 5px;
+    font-size: 1em;
 }
 
 .modal-content button {
@@ -83,6 +84,7 @@
     background-color: #007BFF;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 1em;
 }
 
 .modal-content button:hover {

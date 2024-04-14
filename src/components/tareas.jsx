@@ -254,7 +254,7 @@ export default function Tareas() {
             .then(response => response.json())
             .then(data => setEtiquetas(data))
             .catch(error => console.error('Error:', error));
-    }, []);
+    }, [userId]);
     //####################################################################
     //FILTRAR TAREAS POR ETIQUETA
     const [showDropdown, setShowDropdown] = useState(false);
