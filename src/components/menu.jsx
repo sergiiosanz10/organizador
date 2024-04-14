@@ -1,4 +1,4 @@
-import { useState, useRef, useLayoutEffect } from 'react';
+import { useState, useRef, useLayoutEffect, useEffect } from 'react';
 import "../styles/menu.css";
 import Tareas from './tareas';
 import TareasCompletadas from './tareasCompletadas';
@@ -21,7 +21,7 @@ export default function Menu({ acceder }) {
         acceder(false);
     }
     //######################################
-    
+
     //CAMBIO DE PAGINA
     const menuRef = useRef(null);
 
@@ -32,6 +32,29 @@ export default function Menu({ acceder }) {
     }, [activePage]);
 
     //######################################
+
+    //MODO OSCURO
+    const toggleDarkMode = () => {
+        document.body.classList.toggle('dark-mode');
+    }
+
+
+    useEffect(() => {
+        const darkModeButton = document.getElementById('dark-mode-button');
+        if (darkModeButton) {
+            darkModeButton.addEventListener('click', toggleDarkMode);
+        }
+
+        // Limpiar el event listener cuando el componente se desmonte
+        return () => {
+            if (darkModeButton) {
+                darkModeButton.removeEventListener('click', toggleDarkMode);
+            }
+        };
+    }, []);
+
+
+
     return (
         <div className='body'>
             <nav className="Navigation" ref={menuRef}>
@@ -48,6 +71,31 @@ export default function Menu({ acceder }) {
                     </li>
                     <li ref={refs.Calendario} className={`opciones ${activePage === 'Calendario' ? 'active' : ''}`} onClick={() => setActivePage('Calendario')}>
                         Calendario
+                    </li>
+                    <li>
+                        <label for="toggle" id="toggle-label" className='dark-mode-button'>
+                            <div id="toggle-div">
+                                <input type="checkbox" id="toggle" onChange={toggleDarkMode} />
+                                <div class="clouds">
+                                    <div class="cloud cloud-1"></div>
+                                    <div class="cloud cloud-2"></div>
+                                    <div class="cloud cloud-3"></div>
+                                    <div class="cloud cloud-4"></div>
+                                    <div class="cloud cloud-5"></div>
+                                </div>
+                                <div class="backdrops">
+                                    <div class="backdrop"></div>
+                                </div>
+                                <div class="stars">
+                                    <div class="star star-1"></div>
+                                    <div class="star star-2"></div>
+                                    <div class="star star-3"></div>
+                                </div>
+                                <div class="sun-moon">
+                                    <div class="crater"></div>
+                                </div>
+                            </div>
+                        </label>
                     </li>
                     <li className="Logout" onClick={handleLogout}>Cerrar Sesión</li>
                 </ul>

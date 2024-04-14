@@ -414,8 +414,8 @@ export default function Tareas() {
                             onChange={(e) => handleInputChange(index, 'Etiqueta', e.target.value)}
                             placeholder='Etiqueta de Tarea'
                         />
-                        <input type="text" value={tarea.Nombre} onChange={(e) => handleInputChange(index, 'Nombre', e.target.value)} />
-                        <input type="text" value={tarea.Descripcion} onChange={(e) => handleInputChange(index, 'Descripcion', e.target.value)} />
+                        <input type="text" value={tarea.Nombre} onChange={(e) => handleInputChange(index, 'Nombre', e.target.value)} placeholder='Nombre de la Tarea' />
+                        <input type="text" value={tarea.Descripcion} onChange={(e) => handleInputChange(index, 'Descripcion', e.target.value)} placeholder='Descripcion de la Tarea'/>
                         <input type="date" className='date' value={tarea.Fecha} onChange={(e) => handleInputChange(index, 'Fecha', e.target.value)} />
                         <input type="color" className='colorInput' value={tarea.Color} onChange={(e) => handleInputChange(index, 'Color', e.target.value)} list="color-datalist" />
                         <datalist id="color-datalist">
@@ -452,8 +452,8 @@ export default function Tareas() {
                                         onChange={(e) => handleInputChange(index, 'Etiqueta', e.target.value)}
                                         placeholder='Etiqueta de Tarea'
                                     />
-                                    <input type="text" value={tarea.Nombre} onChange={(e) => handleInputChange(index, 'Nombre', e.target.value)} />
-                                    <input type="text" value={tarea.Descripcion} onChange={(e) => handleInputChange(index, 'Descripcion', e.target.value)} />
+                                    <input type="text" value={tarea.Nombre} onChange={(e) => handleInputChange(index, 'Nombre', e.target.value)} placeholder='Nombre de la Tarea'/>
+                                    <input type="text" value={tarea.Descripcion} onChange={(e) => handleInputChange(index, 'Descripcion', e.target.value)} placeholder='Descripcion de la Tarea' />
                                     <input type="date" className='date' value={tarea.Fecha} onChange={(e) => handleInputChange(index, 'Fecha', e.target.value)} />
                                     <input type="color" className='colorInput' value={tarea.Color} onChange={(e) => handleInputChange(index, 'Color', e.target.value)} list="color-datalist" />
                                     <datalist id="color-datalist">

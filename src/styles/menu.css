@@ -89,3 +89,302 @@
         transform: translateX(0);
     }
 }
+
+/* BOTON DE MODO OSCURO */
+
+  
+  #toggle {
+    display: none;
+  }
+  
+
+  
+  #toggle-label {
+    cursor: pointer;
+    outline: transparent;
+  }
+  
+  #toggle-div {
+    border: 1px solid #cecece;
+    margin-top: 10px;
+    height: 30px;
+    width: 60px;
+    background-color: #357bb3;
+    border-radius: 50px;
+    position: relative;
+    overflow: hidden;
+    transition: all 300ms ease;
+    box-shadow: inset 1px 2px 2px rgba(0, 0, 0, 0.8),      inset -1px -2px 2px rgba(0, 0, 0, 0.2), 2px 2px 2px rgba(255, 255, 255, 1);
+    -webkit-transition: all 300ms ease;
+    -moz-transition: all 300ms ease;
+    -ms-transition: all 300ms ease;
+    -o-transition: all 300ms ease;
+}
+  
+  .backdrops {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    height: 100px;
+    width: 100px;
+    transition: all 300ms ease;
+  }
+  
+  .backdrop {
+    height: 200px;
+    width: 200px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 100%;
+  
+    position: absolute;
+    left: 30%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 300ms ease;
+  }
+  
+  .backdrop::after,
+  .backdrop::before {
+    content: "";
+    height: 200px;
+    width: 200px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 100%;
+    position: absolute;
+    transition: all 300ms ease;
+  }
+  
+  .backdrop::before {
+    left: 15%;
+  }
+  
+  .backdrop::after {
+    left: 30%;
+  }
+  
+  .clouds {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+    transition: all 300ms ease;
+  }
+  
+  .cloud {
+    position: absolute;
+    right: 10%;
+    top: 50%;
+    background-color: #fbfbfb;
+    height: 20px;
+    width: 100px;
+    border-radius: 0 100px 100px 100px;
+    transform: scale(-0.8, 0.8);
+  }
+  
+  .cloud::before {
+    content: "";
+    position: absolute;
+    background-color: #fbfbfb;
+    height: 20px;
+    width: 80px;
+    bottom: 18px;
+    left: 0;
+    border-radius: 100px 100px 0 0px;
+  }
+  
+  .cloud::after {
+    content: "";
+    position: absolute;
+    background-color: #fbfbfb;
+    height: 40px;
+    width: 40px;
+    bottom: 18px;
+    left: 10px;
+    border-radius: 100%;
+  }
+  
+  .cloud-1 {
+    top: 45%;
+    right: 22%;
+    transform: scale(-0.6, 0.6);
+    opacity: 0.5;
+  }
+  
+  .cloud-2 {
+    top: 20%;
+    right: 0%;
+    transform: scale(-0.6, 0.6);
+    opacity: 0.5;
+  }
+  
+  .cloud-3 {
+    top: 92%;
+    right: 35%;
+  }
+  
+  .cloud-4 {
+    top: 85%;
+    right: 10%;
+    transform: scale(-1, 1);
+  }
+  
+  .cloud-5 {
+    top: 60%;
+    right: -18%;
+    transform: rotateZ(-50deg) scale(-1, 1);
+  }
+  
+  .sun-moon {
+    height: 30px;
+    width: 30px;
+    background-color: #f1c428;
+    border-radius: 100%;
+    box-shadow: inset 1px 2px 1px rgba(255, 255, 255, 0.5),
+      inset -1px -2px 1px rgba(0, 0, 0, 0.5), 2px 2px 5px rgba(0, 0, 0, 0.5);
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: 300ms ease;
+  }
+  
+  
+  /* NIGHT */
+  
+  .stars {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: -50%;
+    left: 0;
+    transform: translate(0, -50%);
+    transition: all 300ms ease;
+  }
+  
+  .star {
+    position: absolute;
+    left: 10%;
+    top: 50%;
+    height: 6px;
+    width: 6px;
+    border-radius: 100%;
+    background-color: #c4c9d2;
+    box-shadow: 0 0 4px #fff;
+    animation: twinkle 1s infinite alternate;
+  }
+  
+  .star::before {
+    content: "";
+    position: absolute;
+    left: 300%;
+    top: 300%;
+    height: 4px;
+    width: 4px;
+    border-radius: 100%;
+    background-color: #c4c9d2;
+    box-shadow: 0 0 4px #fff;
+  }
+  
+  .star::after {
+    content: "";
+    position: absolute;
+    left: 400%;
+    bottom: 400%;
+    height: 5px;
+    width: 5px;
+    border-radius: 100%;
+    background-color: #c4c9d2;
+    box-shadow: 0 0 4px #fff;
+  }
+  
+  .star-2 {
+    left: 40%;
+    top: 10%;
+    transform: rotateZ(75deg) scale(1.1);
+    animation-delay: 300ms;
+  }
+  
+  .star-3 {
+    left: 40%;
+    top: 60%;
+    transform: rotateZ(150deg) scale(0.8);
+    animation-delay: 600ms;
+  }
+  
+  .crater {
+    display: none;
+    position: absolute;
+    left: 30%;
+    top: 60%;
+    transform: translate(-50%, -50%);
+    height: 30px;
+    width: 30px;
+    background-color: #949eb2;
+    border-radius: 100%;
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.4);
+  }
+  
+  .crater::before {
+    content: "";
+    height: 15px;
+    width: 15px;
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    background-color: #949eb2;
+    border-radius: 100%;
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.4);
+  }
+  
+  .crater::after {
+    content: "";
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    bottom: 40%;
+    left: 150%;
+    background-color: #949eb2;
+    border-radius: 100%;
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.4);
+  }
+  
+  #toggle-div.night {
+    background-color: #1d1f2b;
+  }
+  
+  input:checked ~ .clouds {
+    top: 150%;
+  }
+  
+  input:checked ~ .sun-moon {
+    left: calc(100% - 110px);
+    background-color: #c4c9d2;
+    transform: rotateZ(180deg);
+  }
+  
+   input:checked ~ .sun-moon {
+    left: calc(100% - 30px);
+    background-color: #c4c9d2;
+  }
+  
+  input:checked ~ .sun-moon .crater {
+    display: block;
+  }
+  
+  input:checked ~ .stars {
+    top: 50%;
+  }
+  
+  /* ANIMATIONS */
+  
+  @keyframes twinkle {
+    from {
+      opacity: 1;
+    }
+  
+    to {
+      opacity: 0.5;
+    }
+  }
+  

@@ -1,3 +1,72 @@
 *{
   font-family: "Truculenta", sans-serif;
 }
+
+/* MODO OSCURO */
+:root {
+  --color-background-light: #ffffff;
+  --color-text-light: #333;
+  --color-background-dark: #333;
+  --color-text-dark: #ffffff;
+}
+
+body {
+  background-color: var(--color-background-light);
+  color: var(--color-text-light);
+}
+
+body.dark-mode {
+  background-color: var(--color-background-dark);
+  color: var(--color-text-dark);
+}
+
+body.dark-mode .header h1 {
+  margin-right: 2%;
+  color: var(--color-text-dark);
+}
+body.dark-mode .Navigation{
+  color: var(--color-text-dark);
+  background-color: var(--color-background-dark);
+}
+body.dark-mode .logo{
+  color: var(--color-text-dark);
+}
+body.dark-mode .line {
+  background-color: var(--color-background-light) ;
+}
+
+body.dark-mode .mostrarTareas, body.dark-mode .mostrarTareas input{
+  color: var(--color-text-dark);
+  background-color: #454545;
+  border-bottom: 2px solid #ffffff; 
+}
+body.dark-mode .mostrarTareas input:focus{
+  border-bottom: 2px solid #afafaf; 
+}
+body.dark-mode .mostrarTareas input::placeholder{
+  color: var(--color-text-dark); 
+}
+
+body.dark-mode .modal-content, body.dark-mode .modal-content input{
+  background-color: #454545;
+  color: var(--color-text-dark);
+}
+body.dark-mode .modal-content input::placeholder{
+  color: #d3d3d3; 
+}
+
+
+
+/* CALENDARIO OSCURO */
+body.dark-mode .calendario, body.dark-mode .fc-daygrid-day, body.dark-mode .fc-day-sat, body.dark-mode .fc-day-sun{
+  background-color: var(--color-background-dark) ;
+}
+
+body.dark-mode .fc-daygrid-day-number {
+  color: var(--color-text-dark);
+}
+body.dark-mode .fc-day-sat,
+body.dark-mode .fc-day-sun {
+  background-color: #454545;
+  color: var(--color-text-dark);
+}
