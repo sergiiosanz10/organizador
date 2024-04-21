@@ -51,8 +51,27 @@ body.dark-mode .modal-content, body.dark-mode .modal-content input{
   background-color: #454545;
   color: var(--color-text-dark);
 }
+
 body.dark-mode .modal-content input::placeholder{
   color: #d3d3d3; 
+}
+
+body.dark-mode .dropdown{
+  background-color: #454545;
+  color: var(--color-text-dark);
+}
+body.dark-mode .dropdown p:hover{
+  background-color: #303030;
+  color: var(--color-text-dark);
+}
+
+body.dark-mode input[type="date"]::-webkit-calendar-picker-indicator  {
+  filter: invert(1);
+}
+
+
+body.dark-mode input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
 }
 
 
