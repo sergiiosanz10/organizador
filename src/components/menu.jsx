@@ -76,23 +76,23 @@ export default function Menu({ acceder }) {
                         <label for="toggle" id="toggle-label" className='dark-mode-button'>
                             <div id="toggle-div">
                                 <input type="checkbox" id="toggle" onChange={toggleDarkMode} />
-                                <div class="clouds">
-                                    <div class="cloud cloud-1"></div>
-                                    <div class="cloud cloud-2"></div>
-                                    <div class="cloud cloud-3"></div>
-                                    <div class="cloud cloud-4"></div>
-                                    <div class="cloud cloud-5"></div>
+                                <div className="clouds">
+                                    <div className="cloud cloud-1"></div>
+                                    <div className="cloud cloud-2"></div>
+                                    <div className="cloud cloud-3"></div>
+                                    <div className="cloud cloud-4"></div>
+                                    <div className="cloud cloud-5"></div>
                                 </div>
-                                <div class="backdrops">
-                                    <div class="backdrop"></div>
+                                <div className="backdrops">
+                                    <div className="backdrop"></div>
                                 </div>
-                                <div class="stars">
-                                    <div class="star star-1"></div>
-                                    <div class="star star-2"></div>
-                                    <div class="star star-3"></div>
+                                <div className="stars">
+                                    <div className="star star-1"></div>
+                                    <div className="star star-2"></div>
+                                    <div className="star star-3"></div>
                                 </div>
-                                <div class="sun-moon">
-                                    <div class="crater"></div>
+                                <div className="sun-moon">
+                                    <div className="crater"></div>
                                 </div>
                             </div>
                         </label>
