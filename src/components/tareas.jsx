@@ -36,10 +36,9 @@ export default function Tareas() {
     const nombreRef = useRef();
     const descripcionRef = useRef();
 
-    const URL_TAREA = "http://localhost/crearTarea.php";
-
+    
     const enviarData = async (url, data) => {
-
+        
         const response = await fetch(url, {
             method: 'POST',
             body: JSON.stringify(data),
@@ -52,9 +51,11 @@ export default function Tareas() {
         console.log(data);
         //console.log(json);
         return json;
-
+        
     };
-
+    
+    const URL_TAREA = "http://localhost/crearTarea.php";
+    
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         const userId = localStorage.getItem('userId');
