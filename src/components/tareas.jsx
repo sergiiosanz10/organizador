@@ -461,7 +461,7 @@ export default function Tareas() {
                                             <option key={index} value={color} />
                                         ))}
                                     </datalist>
-                                    <button className="paleta" onClick={() => addColor(index, tarea.Color)}><FontAwesomeIcon icon={faPalette} /></button>
+                                    <button className="paleta" onClick={() => addColor(index, tarea.Color)} title='Guardar color'><FontAwesomeIcon icon={faPalette} /></button>
                                     <button className={`botonEstado ${tarea.Estado === 0 ? 'pendiente' : 'completado'}`} onClick={() => handleEstadoChange(index)}>
                                         {tarea.Estado === 0 ?
                                             <FontAwesomeIcon icon={faClock} /> :

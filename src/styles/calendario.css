@@ -38,13 +38,13 @@
 }
 
 .event-title {
-    font-size: 1em;
+    font-size: 1.2em;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 .event-descrip {
-    font-size: 0.8em;
+    font-size: 1em;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
