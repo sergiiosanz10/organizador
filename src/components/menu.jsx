@@ -33,25 +33,36 @@ export default function Menu({ acceder }) {
 
     //######################################
 
-    //MODO OSCURO
-    const toggleDarkMode = () => {
-        document.body.classList.toggle('dark-mode');
-    }
-
-
-    useEffect(() => {
-        const darkModeButton = document.getElementById('dark-mode-button');
-        if (darkModeButton) {
-            darkModeButton.addEventListener('click', toggleDarkMode);
-        }
-
-        // Limpiar el event listener cuando el componente se desmonte
-        return () => {
-            if (darkModeButton) {
-                darkModeButton.removeEventListener('click', toggleDarkMode);
+        //MODO OSCURO
+        const toggleDarkMode = () => {
+            document.body.classList.toggle('dark-mode');
+            const darkModeOn = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', darkModeOn ? 'true' : 'false');
+        
+            // Guardar el estado del checkbox en el localStorage
+            const checkbox = document.getElementById('toggle');
+            if (checkbox) {
+                checkbox.checked = darkModeOn;
+                localStorage.setItem('darkModeCheckbox', darkModeOn ? 'true' : 'false');
             }
-        };
-    }, []);
+        }
+        
+        useEffect(() => {
+            // Set dark mode on page load
+            const darkModeSaved = localStorage.getItem('darkMode');
+            if (darkModeSaved === 'true') {
+                document.body.classList.add('dark-mode');
+            } else {
+                document.body.classList.remove('dark-mode');
+            }
+        
+            // Recuperar el estado del checkbox del localStorage
+            const checkbox = document.getElementById('toggle');
+            if (checkbox) {
+                const checkboxSaved = localStorage.getItem('darkModeCheckbox');
+                checkbox.checked = checkboxSaved === 'true';
+            }
+        }, []);
 
 
 
