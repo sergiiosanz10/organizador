@@ -2,8 +2,6 @@ import "../styles/login.css";
 import React, { useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons'
-import { Application } from '@splinetool/runtime';
-import Spline from '@splinetool/react-spline';
 
 
 
@@ -45,7 +43,7 @@ export default function Login(props) {
         if (userId) {
             props.acceder(true);
         }
-    }, []);
+    }, [props]);
     //##################################################
     const handleLogin = async () => {
         const data = {

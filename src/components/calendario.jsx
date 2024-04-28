@@ -2,7 +2,7 @@ import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction';
 import esLocale from '@fullcalendar/core/locales/es';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import '../styles/calendario.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClock, faCheck } from '@fortawesome/free-solid-svg-icons'
@@ -11,21 +11,6 @@ import { faClock, faCheck } from '@fortawesome/free-solid-svg-icons'
 export default function Calendario() {
     const [events, setEvents] = useState([]);
     const [showModal, setShowModal] = useState(false);
-
-    const [etiqueta, setEtiqueta] = useState('');
-    const [color, setColor] = useState('');
-    const [nombre, setNombre] = useState('');
-    const [descripcion, setDescripcion] = useState('');
-    const [tareas, setTareas] = useState([]);
-    const [fecha, setFecha] = useState('');
-
-    const [horaInicio, setHoraInicio] = useState('');
-    const [horaFin, setHoraFin] = useState('');
-
-    const etiquetaRef = useRef();
-    const nombreRef = useRef();
-    const descripcionRef = useRef();
-    const userId = localStorage.getItem('userId');
 
     useEffect(() => {
         const userId = localStorage.getItem('userId');
@@ -110,7 +95,7 @@ export default function Calendario() {
 
 
 
-    const [etiquetas, setEtiquetas] = useState([]);
+    const [setEtiquetas] = useState([]);
 
     useEffect(() => {
         const userId = localStorage.getItem('userId');
@@ -118,7 +103,7 @@ export default function Calendario() {
             .then(response => response.json())
             .then(data => setEtiquetas(data))
             .catch(error => console.error('Error:', error));
-    }, []);
+    }, [setEtiquetas]);
 
     const URL_MODITAREA = "http://localhost/modiTarea.php";
 
@@ -140,7 +125,7 @@ export default function Calendario() {
                 "horaFin": field === 'HoraFin' ? value : selectedTask.HoraFin,
                 "fecha": field === 'Fecha' ? value : selectedTask.Fecha
             };
-            const respuestaJson = await enviarData(URL_MODITAREA, data);
+            await enviarData(URL_MODITAREA, data);
 
             // Actualiza el estado de events para reflejar los cambios
             setEvents(prevEvents => prevEvents.map(event => {
