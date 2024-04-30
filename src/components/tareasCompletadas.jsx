@@ -27,7 +27,7 @@ export default function Completadas() {
     //MOSTRAR TAREAS
     useEffect(() => {
         const userId = localStorage.getItem('userId');
-        fetch(`http://localhost/completadas.php?userId=${userId}`)
+        fetch(`https://taskify.sergiiosanz.es/completadas.php?userId=${userId}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Conexión rechazada por el servidor. Intente más tarde.');
@@ -41,7 +41,7 @@ export default function Completadas() {
     }, []);
 
     //CAMBIAR ESTADO DE TAREA ##########################################
-    const URL_MODIESTADO = "http://localhost/modiEstado.php";
+    const URL_MODIESTADO = "https://taskify.sergiiosanz.es/modiEstado.php";
 
     const handleEstadoChange = async (index) => {
         const newTareas = [...tareas];
@@ -60,7 +60,7 @@ export default function Completadas() {
 
     //MODIFICAR INPUTS DE TAREA ########################################
 
-    const URL_MODITAREA = "http://localhost/modiTarea.php";
+    const URL_MODITAREA = "https://taskify.sergiiosanz.es/modiTarea.php";
 
     const handleInputChange = async (index, field, value) => {
         const newTareas = [...tareas];
@@ -83,7 +83,7 @@ export default function Completadas() {
     //####################################################################
 
     //################### ELIMINAR TAREA #################################
-    const URL_DELETETAREA = "http://localhost/eliminarTareas.php";
+    const URL_DELETETAREA = "https://taskify.sergiiosanz.es/eliminarTareas.php";
     const userId = localStorage.getItem('userId');
     const handleDelete = async (index) => {
         let newTareas = [...tareas];
@@ -94,7 +94,7 @@ export default function Completadas() {
         await enviarData(URL_DELETETAREA, data);
 
         // Solicita la lista actualizada de tareas al servidor
-        fetch(`http://localhost/mostrarTareas.php?userId=${userId}`)
+        fetch(`https://taskify.sergiiosanz.es/mostrarTareas.php?userId=${userId}`)
             .then(response => response.json())
             .then(data => setTareas(data));
     };
@@ -113,7 +113,7 @@ export default function Completadas() {
         //COLOR DE TAREAS
         const [colores, setColors] = useState([]);
 
-        const URL_COLOR = "http://localhost/colores.php";
+        const URL_COLOR = "https://taskify.sergiiosanz.es/colores.php";
     
         // Cuando el usuario guarda un color
         const addColor = async (index, value, color) => {
@@ -132,7 +132,7 @@ export default function Completadas() {
                 await enviarData(URL_COLOR, data);
     
                 // Actualiza los colores en la paleta
-                fetch(`http://localhost/mostrarColores.php?userId=${userId}`)
+                fetch(`https://taskify.sergiiosanz.es/mostrarColores.php?userId=${userId}`)
                     .then(response => response.json())
                     .then(data => {
                         setColors(data.map(colorObj => colorObj.color));
@@ -144,7 +144,7 @@ export default function Completadas() {
         useEffect(() => {
             // Reemplaza esto con tu propia función para obtener los colores de la base de datos
             async function fetchColors() {
-                const response = await fetch(`http://localhost/mostrarColores.php?userId=${userId}`);
+                const response = await fetch(`https://taskify.sergiiosanz.es/mostrarColores.php?userId=${userId}`);
                 const data = await response.json();
                 setColors(data.map(colorObj => colorObj.color)); // Aquí asumimos que cada objeto tiene una propiedad 'color'
             }

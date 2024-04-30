@@ -3,10 +3,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons'
 
-
-
-const URL_LOGIN = "http://localhost/login.php";
-const URL_REGISTRO = "http://localhost/registrar.php";
+const URL_LOGIN = "https://taskify.sergiiosanz.es/login.php";
+const URL_REGISTRO = "https://taskify.sergiiosanz.es/registrar.php";
 
 const enviarData = async (url, data) => {
 
@@ -51,11 +49,21 @@ export default function Login(props) {
             "password": refPassword.current.value
         };
         console.log(data);
-        const respuestaJson = await enviarData(URL_LOGIN, data);
-        console.log("Respuesta del servidor: ", respuestaJson);
-        localStorage.setItem('userId', respuestaJson.id);
-
-        props.acceder(respuestaJson.isLogged);
+        
+        try {
+            const respuestaJson = await enviarData(URL_LOGIN, data);
+            console.log("Respuesta del servidor: ", respuestaJson);
+    
+            // Verifica si la respuesta es un objeto JSON válido
+            if (respuestaJson && typeof respuestaJson === 'object' && respuestaJson.id) {
+                localStorage.setItem('userId', respuestaJson.id);
+                props.acceder(respuestaJson.isLogged);
+            } else {
+                console.error("La respuesta del servidor no es un objeto JSON válido:", respuestaJson);
+            }
+        } catch (error) {
+            console.error("Error al manejar la respuesta del servidor:", error);
+        }
     }
 
     const handleRegistro = async () => {

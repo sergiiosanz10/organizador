@@ -54,7 +54,7 @@ export default function Tareas() {
         
     };
     
-    const URL_TAREA = "http://localhost/crearTarea.php";
+    const URL_TAREA = "https://taskify.sergiiosanz.es/crearTarea.php";
     
     const handleFormSubmit = async (event) => {
         event.preventDefault();
@@ -82,18 +82,18 @@ export default function Tareas() {
         setShowModal(false);
 
         // Solicita la lista actualizada de tareas al servidor
-        fetch(`http://localhost/mostrarTareas.php?userId=${userId}`)
+        fetch(`https://taskify.sergiiosanz.es/mostrarTareas.php?userId=${userId}`)
             .then(response => response.json())
             .then(data => setTareas(data));
 
         //Actualiza las etiquetas
-        fetch(`http://localhost/etiquetas.php?userId=${userId}`)
+        fetch(`https://taskify.sergiiosanz.es/etiquetas.php?userId=${userId}`)
             .then(response => response.json())
             .then(data => setEtiquetas(data));
 
         // Si actualmente estás filtrando por una etiqueta, actualiza las tareas filtradas
         if (serverResponse) {
-            fetch(`http://localhost/filtrarEtiquetas.php?etiqueta=${etiqueta}&userId=${userId}`)
+            fetch(`https://taskify.sergiiosanz.es/filtrarEtiquetas.php?etiqueta=${etiqueta}&userId=${userId}`)
                 .then(response => response.json())
                 .then(data => {
                     setTareas(data);
@@ -105,7 +105,7 @@ export default function Tareas() {
     //MOSTRAR TAREAS
     useEffect(() => {
         const userId = localStorage.getItem('userId');
-        fetch(`http://localhost/mostrarTareas.php?userId=${userId}`)
+        fetch(`https://taskify.sergiiosanz.es/mostrarTareas.php?userId=${userId}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Conexión rechazada por el servidor');
@@ -119,7 +119,7 @@ export default function Tareas() {
     }, []);
 
     //CAMBIAR ESTADO DE TAREA ##########################################
-    const URL_MODIESTADO = "http://localhost/modiEstado.php";
+    const URL_MODIESTADO = "https://taskify.sergiiosanz.es/modiEstado.php";
 
     const handleEstadoChange = async (index) => {
         const newTareas = [...tareas];
@@ -148,7 +148,7 @@ export default function Tareas() {
 
     //MODIFICAR INPUTS DE TAREA ########################################
 
-    const URL_MODITAREA = "http://localhost/modiTarea.php";
+    const URL_MODITAREA = "https://taskify.sergiiosanz.es/modiTarea.php";
 
     const handleInputChange = async (index, field, value) => {
         const newTareas = [...tareas];
@@ -179,7 +179,7 @@ export default function Tareas() {
         };
         await enviarData(URL_MODITAREA, data);
 
-        fetch(`http://localhost/etiquetas.php?userId=${userId}`)
+        fetch(`https://taskify.sergiiosanz.es/etiquetas.php?userId=${userId}`)
             .then(response => response.json())
             .then(data => setEtiquetas(data));
     };
@@ -187,7 +187,7 @@ export default function Tareas() {
     //####################################################################
 
     //################### ELIMINAR TAREA #################################
-    const URL_DELETETAREA = "http://localhost/eliminarTareas.php";
+    const URL_DELETETAREA = "https://taskify.sergiiosanz.es/eliminarTareas.php";
     const userId = localStorage.getItem('userId');
 
     const handleDelete = async (index) => {
@@ -204,12 +204,12 @@ export default function Tareas() {
         await enviarData(URL_DELETETAREA, data);
 
         // Solicita la lista actualizada de tareas al servidor
-        fetch(`http://localhost/mostrarTareas.php?userId=${userId}`)
+        fetch(`https://taskify.sergiiosanz.es/mostrarTareas.php?userId=${userId}`)
             .then(response => response.json())
             .then(data => setTareas(data));
 
         //Actualiza las etiquetas
-        fetch(`http://localhost/etiquetas.php?userId=${userId}`)
+        fetch(`https://taskify.sergiiosanz.es/etiquetas.php?userId=${userId}`)
             .then(response => response.json())
             .then(data => setEtiquetas(data));
     };
@@ -251,7 +251,7 @@ export default function Tareas() {
     };
 
     useEffect(() => {
-        fetch(`http://localhost/mostrarTareas.php?userId=${userId}`)
+        fetch(`https://taskify.sergiiosanz.es/mostrarTareas.php?userId=${userId}`)
             .then(response => response.json())
             .then(data => setEtiquetas(data))
             .catch(error => console.error('Error:', error));
@@ -265,13 +265,13 @@ export default function Tareas() {
 
     const handleEtiquetaClick = async (etiqueta) => {
         // Aquí puedes enviar el dato de la etiqueta al servidor
-        const response = await fetch(`http://localhost/filtrarEtiquetas.php?etiqueta=${etiqueta}&userId=${userId}`);
+        const response = await fetch(`https://taskify.sergiiosanz.es/filtrarEtiquetas.php?etiqueta=${etiqueta}&userId=${userId}`);
         const data = await response.json();
         setServerResponse(data);
         console.log(data);
 
         // Actualiza las tareas filtradas
-        fetch(`http://localhost/filtrarEtiquetas.php?etiqueta=${etiqueta}&userId=${userId}`)
+        fetch(`https://taskify.sergiiosanz.es/filtrarEtiquetas.php?etiqueta=${etiqueta}&userId=${userId}`)
             .then(response => response.json())
             .then(data => {
                 setTareas(data);
@@ -299,7 +299,7 @@ export default function Tareas() {
         setServerResponse(updatedServerResponse);
 
         // Actualiza las etiquetas
-        fetch(`http://localhost/etiquetas.php?userId=${userId}`)
+        fetch(`https://taskify.sergiiosanz.es/etiquetas.php?userId=${userId}`)
             .then(response => response.json())
             .then(data => setEtiquetas(data));
     };
@@ -308,7 +308,7 @@ export default function Tareas() {
     //COLOR DE TAREAS
     const [colores, setColors] = useState([]);
 
-    const URL_COLOR = "http://localhost/colores.php";
+    const URL_COLOR = "https://taskify.sergiiosanz.es/colores.php";
 
     // Cuando el usuario guarda un color
     const addColor = async (index, value, color) => {
@@ -327,7 +327,7 @@ export default function Tareas() {
             await enviarData(URL_COLOR, data);
 
             // Actualiza los colores en la paleta
-            fetch(`http://localhost/mostrarColores.php?userId=${userId}`)
+            fetch(`https://taskify.sergiiosanz.es/mostrarColores.php?userId=${userId}`)
                 .then(response => response.json())
                 .then(data => {
                     setColors(data.map(colorObj => colorObj.color));
@@ -339,7 +339,7 @@ export default function Tareas() {
     useEffect(() => {
         // Reemplaza esto con tu propia función para obtener los colores de la base de datos
         async function fetchColors() {
-            const response = await fetch(`http://localhost/mostrarColores.php?userId=${userId}`);
+            const response = await fetch(`https://taskify.sergiiosanz.es/mostrarColores.php?userId=${userId}`);
             const data = await response.json();
             setColors(data.map(colorObj => colorObj.color)); // Aquí asumimos que cada objeto tiene una propiedad 'color'
         }

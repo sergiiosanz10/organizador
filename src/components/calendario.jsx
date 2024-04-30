@@ -14,7 +14,7 @@ export default function Calendario() {
 
     useEffect(() => {
         const userId = localStorage.getItem('userId');
-        fetch(`http://localhost/mostrarTareas.php?userId=${userId}`)
+        fetch(`https://taskify.sergiiosanz.es/mostrarTareas.php?userId=${userId}`)
             .then(response => response.json())
             .then(data => {
                 const tasks = data.map(task => {
@@ -57,7 +57,7 @@ export default function Calendario() {
         }
     };
 
-    const URL_MODIFICAR_FECHA = "http://localhost/modiFecha.php";
+    const URL_MODIFICAR_FECHA = "https://taskify.sergiiosanz.es/modiFecha.php";
 
     const handleEventDrop = async (info) => {
         const { event } = info;
@@ -99,13 +99,13 @@ export default function Calendario() {
 
     useEffect(() => {
         const userId = localStorage.getItem('userId');
-        fetch(`http://localhost/etiquetas.php?userId=${userId}`)
+        fetch(`https://taskify.sergiiosanz.es/etiquetas.php?userId=${userId}`)
             .then(response => response.json())
             .then(data => setEtiquetas(data))
             .catch(error => console.error('Error:', error));
     }, [setEtiquetas]);
 
-    const URL_MODITAREA = "http://localhost/modiTarea.php";
+    const URL_MODITAREA = "https://taskify.sergiiosanz.es/modiTarea.php";
 
     const handleInputChange = async (field, value) => {
         if (selectedTask) {
