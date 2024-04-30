@@ -437,6 +437,7 @@ export default function Tareas() {
                     </div>
                 ))
                 ) : ( /**CONTENEDOR DE TAREAS  */
+                tareas.length > 0 ? (
                     tareasOrdenadas.map((tarea, index) => {
                         const separador = index === 0 || tareasOrdenadas[index - 1].Fecha !== tarea.Fecha ?
                             <div className='fecha'>{new Date(tarea.Fecha).toLocaleDateString('es-ES')} <hr /></div> : null;
@@ -476,7 +477,10 @@ export default function Tareas() {
                             </React.Fragment>
                         );
                     })
-                )}
+                
+            ) : (
+                <h3 className="alerta alerta-info">No hay tareas asignadas.</h3>
+            ))}
             </div>
         </div>
     )

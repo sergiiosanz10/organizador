@@ -166,7 +166,8 @@ export default function Completadas() {
                 <h1 className='titulo' >Tareas Completadas</h1>
             </div>
             <div className='tareasContainer'>
-                {tareasOrdenadas.map((tarea, index) => {
+            {tareasOrdenadas.length > 0 ? (
+                tareasOrdenadas.map((tarea, index) => {
                     const separador = index === 0 || tareasOrdenadas[index - 1].Fecha !== tarea.Fecha ?
                         <div className='fecha'>{new Date(tarea.Fecha).toLocaleDateString('es-ES')} <hr /></div> : null;
                     return (
@@ -204,7 +205,10 @@ export default function Completadas() {
                             </div>
                         </React.Fragment>
                     );
-                })}
+                })
+            ) : (
+                <h3 className="alerta alerta-info">No hay tareas completadas.</h3>
+            )}
             </div>
         </div>
     )

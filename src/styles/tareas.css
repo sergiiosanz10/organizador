@@ -270,3 +270,17 @@
 .dropdown p:hover {
     background-color: #ddd;
 }
+
+.alerta {
+    padding: 15px;
+    width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alerta-info {
+    color: #d85656;
+    background-color: #f7d9d9;
+    border-color: #f7d9d9;
+}

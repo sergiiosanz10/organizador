@@ -117,31 +117,35 @@ export default function Pendientes() {
                 <h1 className='titulo' >Tareas Pendientes</h1>
             </div>
             <div className='tareasContainer'>
-                {tareasOrdenadas.map((tarea, index) => {
-                    const separador = index === 0 || tareasOrdenadas[index - 1].Fecha !== tarea.Fecha ?
-                        <div className='fecha'>{new Date(tarea.Fecha).toLocaleDateString('es-ES')} <hr /></div> : null;
-                    return (
-                        <React.Fragment key={index}>
-                            {separador}
-                            <div className='mostrarTareas'>
-                                <input type="time" value={tarea.HoraInicio} onChange={(e) => handleInputChange(index, 'HoraInicio', e.target.value)} />
-                                <input type="time" value={tarea.HoraFin} onChange={(e) => handleInputChange(index, 'HoraFin', e.target.value)} />
-                                <input type="text" value={tarea.Nombre} onChange={(e) => handleInputChange(index, 'Nombre', e.target.value)} />
-                                <input type="text" value={tarea.Descripcion} onChange={(e) => handleInputChange(index, 'Descripcion', e.target.value)} />
-                                <input type="date" value={tarea.Fecha} onChange={(e) => handleInputChange(index, 'Fecha', e.target.value)} />
-                                <button className={`botonEstado ${tarea.Estado === 0 ? 'pendiente' : 'completado'}`} onClick={() => handleEstadoChange(index)}>
-                                    {tarea.Estado === 0 ?
-                                        <FontAwesomeIcon icon={faClock} /> :
-                                        <FontAwesomeIcon icon={faCheck} />
-                                    }
-                                </button>
-                                <button className="botonEliminar" onClick={() => handleDelete(index)}>
-                                    <FontAwesomeIcon icon={faTrash} />
-                                </button>
-                            </div>
-                        </React.Fragment>
-                    );
-                })}
+                {tareas.length > 0 ? (
+                    tareasOrdenadas.map((tarea, index) => {
+                        const separador = index === 0 || tareasOrdenadas[index - 1].Fecha !== tarea.Fecha ?
+                            <div className='fecha'>{new Date(tarea.Fecha).toLocaleDateString('es-ES')} <hr /></div> : null;
+                        return (
+                            <React.Fragment key={index}>
+                                {separador}
+                                <div className='mostrarTareas'>
+                                    <input type="time" value={tarea.HoraInicio} onChange={(e) => handleInputChange(index, 'HoraInicio', e.target.value)} />
+                                    <input type="time" value={tarea.HoraFin} onChange={(e) => handleInputChange(index, 'HoraFin', e.target.value)} />
+                                    <input type="text" value={tarea.Nombre} onChange={(e) => handleInputChange(index, 'Nombre', e.target.value)} />
+                                    <input type="text" value={tarea.Descripcion} onChange={(e) => handleInputChange(index, 'Descripcion', e.target.value)} />
+                                    <input type="date" value={tarea.Fecha} onChange={(e) => handleInputChange(index, 'Fecha', e.target.value)} />
+                                    <button className={`botonEstado ${tarea.Estado === 0 ? 'pendiente' : 'completado'}`} onClick={() => handleEstadoChange(index)}>
+                                        {tarea.Estado === 0 ?
+                                            <FontAwesomeIcon icon={faClock} /> :
+                                            <FontAwesomeIcon icon={faCheck} />
+                                        }
+                                    </button>
+                                    <button className="botonEliminar" onClick={() => handleDelete(index)}>
+                                        <FontAwesomeIcon icon={faTrash} />
+                                    </button>
+                                </div>
+                            </React.Fragment>
+                        );
+                    })
+                ) : (
+                    <h3 className="alerta alerta-info">No hay tareas pendientes.</h3>
+                )}
             </div>
         </div>
     )
