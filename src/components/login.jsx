@@ -71,7 +71,7 @@ export default function Login(props) {
             "nombre": refNombre.current.value,
             "apellidos": refApellidos.current.value,
             "usuario": refUsuario.current.value,
-            "password": refPassword.current.value
+            "password": refPassword.current.value,
         };
         console.log(data);
         const respuestaJson = await enviarData(URL_REGISTRO, data);
