@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClock, faTrash, faCheck, faPalette } from '@fortawesome/free-solid-svg-icons'
 import '../styles/completadas.css';
 
-export default function Completadas() {
+export default function Completadas({userId}) {
     const [tareas, setTareas] = useState([]);
 
     const enviarData = async (url, data) => {
@@ -26,7 +26,7 @@ export default function Completadas() {
 
     //MOSTRAR TAREAS
     useEffect(() => {
-        const userId = localStorage.getItem('userId');
+        
         fetch(`https://taskify.sergiiosanz.es/completadas.php?userId=${userId}`)
             .then(response => {
                 if (!response.ok) {
@@ -84,7 +84,7 @@ export default function Completadas() {
 
     //################### ELIMINAR TAREA #################################
     const URL_DELETETAREA = "https://taskify.sergiiosanz.es/eliminarTareas.php";
-    const userId = localStorage.getItem('userId');
+    
     const handleDelete = async (index) => {
         let newTareas = [...tareas];
         const tareaId = newTareas[index].tareaId;

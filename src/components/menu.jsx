@@ -5,7 +5,7 @@ import TareasCompletadas from './tareasCompletadas';
 import TareasSinCompletar from './tareasPendientes';
 import Calendario from './calendario';
 
-export default function Menu({ acceder }) {
+export default function Menu({ acceder,id }) {
     const [activePage, setActivePage] = useState('Tareas');
     const [lineStyle, setLineStyle] = useState({});
     const refs = {
@@ -14,7 +14,7 @@ export default function Menu({ acceder }) {
         'Tareas Pendientes': useRef(),
         Calendario: useRef(),
     };
-
+    console.log(id);
     //LOGOUT
     const handleLogout = () => {
         localStorage.removeItem('userId');
@@ -113,9 +113,9 @@ export default function Menu({ acceder }) {
                 <div className="line" style={lineStyle} />
             </nav>
             <div>
-                {activePage === 'Tareas' && <Tareas />}
-                {activePage === 'Tareas Completadas' && <TareasCompletadas />}
-                {activePage === 'Tareas Pendientes' && <TareasSinCompletar />}
+                {activePage === 'Tareas' && <Tareas userId={id} />}
+                {activePage === 'Tareas Completadas' && <TareasCompletadas userId={id} />}
+                {activePage === 'Tareas Pendientes' && <TareasSinCompletar userId={id} />}
                 {activePage === 'Calendario' && <Calendario />}
             </div>
         </div>

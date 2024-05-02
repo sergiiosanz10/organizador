@@ -5,7 +5,7 @@ import { faClock, faTrash, faCheck, faFileCirclePlus, faFilter, faPalette } from
 
 import '../styles/tareas.css';
 
-export default function Tareas() {
+export default function Tareas({userId}) {
     const [showModal, setShowModal] = useState(false);
     const [etiqueta, setEtiqueta] = useState('');
     const [color, setColor] = useState('');
@@ -15,8 +15,6 @@ export default function Tareas() {
     const [fecha, setFecha] = useState('');
     const [horaInicio, setHoraInicio] = useState('');
     const [horaFin, setHoraFin] = useState('');
-
-
 
     const handleColorChange = (event) => {
         setColor(event.target.value);
@@ -58,7 +56,7 @@ export default function Tareas() {
     
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        const userId = localStorage.getItem('userId');
+        
         const tarea = {
             "etiqueta": etiquetaRef.current.value,
             "color": color,
@@ -104,7 +102,7 @@ export default function Tareas() {
     //####################################################################
     //MOSTRAR TAREAS
     useEffect(() => {
-        const userId = localStorage.getItem('userId');
+        
         fetch(`https://taskify.sergiiosanz.es/mostrarTareas.php?userId=${userId}`)
             .then(response => {
                 if (!response.ok) {
@@ -188,7 +186,7 @@ export default function Tareas() {
 
     //################### ELIMINAR TAREA #################################
     const URL_DELETETAREA = "https://taskify.sergiiosanz.es/eliminarTareas.php";
-    const userId = localStorage.getItem('userId');
+    
 
     const handleDelete = async (index) => {
         let newTareas = [...tareas];

@@ -27,6 +27,8 @@ export default function Login(props) {
     const handleClick = () => {
         setLoginVisible(!isLoginVisible);
     };
+    const {setId} = props;
+
     //################################
 
     //LOGIN Y REGISTRO DE USUARIOS
@@ -42,6 +44,7 @@ export default function Login(props) {
             props.acceder(true);
         }
     }, [props]);
+
     //##################################################
     const handleLogin = async () => {
         const data = {
@@ -56,7 +59,7 @@ export default function Login(props) {
     
             // Verifica si la respuesta es un objeto JSON válido
             if (respuestaJson && typeof respuestaJson === 'object' && respuestaJson.id) {
-                localStorage.setItem('userId', respuestaJson.id);
+                setId(() => respuestaJson.id);
                 props.acceder(respuestaJson.isLogged);
             } else {
                 console.error("La respuesta del servidor no es un objeto JSON válido:", respuestaJson);
