@@ -82,7 +82,7 @@ export default function Menu({ acceder,id }) {
                         Calendario
                     </li>
                     <li>
-                        <label for="toggle" id="toggle-label" className='dark-mode-button'>
+                        <label htmlFor="toggle" id="toggle-label" className='dark-mode-button'>
                             <div id="toggle-div">
                                 <input type="checkbox" id="toggle" onChange={toggleDarkMode} />
                                 <div className="clouds">
