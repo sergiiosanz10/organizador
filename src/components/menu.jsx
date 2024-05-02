@@ -14,10 +14,8 @@ export default function Menu({ acceder,id }) {
         'Tareas Pendientes': useRef(),
         Calendario: useRef(),
     };
-    console.log(id);
     //LOGOUT
     const handleLogout = () => {
-        localStorage.removeItem('userId');
         acceder(false);
     }
     //######################################
@@ -116,7 +114,7 @@ export default function Menu({ acceder,id }) {
                 {activePage === 'Tareas' && <Tareas userId={id} />}
                 {activePage === 'Tareas Completadas' && <TareasCompletadas userId={id} />}
                 {activePage === 'Tareas Pendientes' && <TareasSinCompletar userId={id} />}
-                {activePage === 'Calendario' && <Calendario />}
+                {activePage === 'Calendario' && <Calendario userId={id} />}
             </div>
         </div>
     )

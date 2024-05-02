@@ -8,12 +8,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClock, faCheck } from '@fortawesome/free-solid-svg-icons'
 
 
-export default function Calendario() {
+export default function Calendario({userId}) {
     const [events, setEvents] = useState([]);
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
-        const userId = localStorage.getItem('userId');
+        
         fetch(`https://taskify.sergiiosanz.es/mostrarTareas.php?userId=${userId}`)
             .then(response => response.json())
             .then(data => {
@@ -98,7 +98,7 @@ export default function Calendario() {
     const [setEtiquetas] = useState([]);
 
     useEffect(() => {
-        const userId = localStorage.getItem('userId');
+        
         fetch(`https://taskify.sergiiosanz.es/etiquetas.php?userId=${userId}`)
             .then(response => response.json())
             .then(data => setEtiquetas(data))

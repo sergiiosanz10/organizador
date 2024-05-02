@@ -39,8 +39,7 @@ export default function Login(props) {
 
     //PARA GUARDAR EL INICIO DE SESIÓN
     useEffect(() => {
-        const userId = localStorage.getItem('userId');
-        if (userId) {
+        if (props.isLogged) {
             props.acceder(true);
         }
     }, [props]);

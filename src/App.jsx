@@ -11,13 +11,12 @@ function App() {
   const acceder = (estado) => {
     setIsLogged(estado);
   } 
-  console.log(id);
 
   return (
     <Router>
       <Routes>
         <Route path="/login" element={isLogged ? <Navigate to="/" /> : <Login setId={setId} acceder={acceder} />} />
-        <Route path="/" element={!isLogged ? <Navigate to="/login" /> : <Menu id={15}  acceder={acceder}  />} />
+        <Route path="/" element={!isLogged ? <Navigate to="/login" /> : <Menu id={id}  acceder={acceder}  />} />
         <Route path="/tareas" element={isLogged ? <Navigate to="/tareas" /> : <Tareas />} />
 
       </Routes>
