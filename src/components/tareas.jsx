@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClock, faTrash, faCheck, faFileCirclePlus, faFilter, faPalette } from '@fortawesome/free-solid-svg-icons'
 
@@ -104,28 +105,52 @@ export default function Tareas() {
     };
     //####################################################################
     //MOSTRAR TAREAS
-    useEffect(() => {
-        fetch(`https://taskify.sergiiosanz.es/mostrarTareas.php?userId=${userId}&token=${token}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Conexión rechazada por el servidor');
+const navigate = useNavigate();
+
+useEffect(() => {
+    const handleStorageChange = (e) => {
+        if (e.key === 'userId' && e.storageArea === sessionStorage) {
+            const sessionStorageUserId = sessionStorage.getItem('userId');
+            if (sessionStorageUserId !== token) {
+                // Cerrar la sesión
+                sessionStorage.removeItem('token');
+                sessionStorage.removeItem('userId');
+                sessionStorage.removeItem('isLogged');
+                window.location.reload();
+                navigate('/login');
+            }
+        }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+
+    fetch(`https://taskify.sergiiosanz.es/mostrarTareas.php?userId=${userId}&token=${token}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Conexión rechazada por el servidor');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.error) {
+                if (data.error === 'Token incorrecto') {
+                    // Aquí es donde cierras la sesión
+                    sessionStorage.removeItem('token');
+                    navigate('/login');
                 }
-                return response.json();
-            })
-            .then(data => {
-                if (data.error) {
-                    if (data.error === 'Token incorrecto') {
-                        // Aquí es donde cierras la sesión
-                        sessionStorage.removeItem('token');
-                    }
-                } else {
-                    setTareas(data);
-                }
-            })
-            .catch(error => {
-                console.error('Hubo un problema al mostrar las tareas :', error);
-            });
-    }, []);
+            } else {
+                setTareas(data);
+            }
+        })
+        .catch(error => {
+            console.error('Hubo un problema al mostrar las tareas :', error);
+        });
+
+    // Limpiar el evento al desmontar el componente
+    return () => {
+        window.removeEventListener('storage', handleStorageChange);
+    };
+}, [token, userId, navigate]);
 
     //CAMBIAR ESTADO DE TAREA ##########################################
     const URL_MODIESTADO = "https://taskify.sergiiosanz.es/modiEstado.php";
