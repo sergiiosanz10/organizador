@@ -5,7 +5,7 @@ import { faClock, faTrash, faCheck, faFileCirclePlus, faFilter, faPalette } from
 
 import '../styles/tareas.css';
 
-export default function Tareas({userId}) {
+export default function Tareas() {
     const [showModal, setShowModal] = useState(false);
     const [etiqueta, setEtiqueta] = useState('');
     const [color, setColor] = useState('');
@@ -15,6 +15,9 @@ export default function Tareas({userId}) {
     const [fecha, setFecha] = useState('');
     const [horaInicio, setHoraInicio] = useState('');
     const [horaFin, setHoraFin] = useState('');
+
+    const userId = sessionStorage.getItem('userId');
+    const token = sessionStorage.getItem('token');
 
     const handleColorChange = (event) => {
         setColor(event.target.value);
@@ -34,9 +37,9 @@ export default function Tareas({userId}) {
     const nombreRef = useRef();
     const descripcionRef = useRef();
 
-    
+
     const enviarData = async (url, data) => {
-        
+
         const response = await fetch(url, {
             method: 'POST',
             body: JSON.stringify(data),
@@ -49,14 +52,14 @@ export default function Tareas({userId}) {
         console.log(data);
         //console.log(json);
         return json;
-        
+
     };
-    
+
     const URL_TAREA = "https://taskify.sergiiosanz.es/crearTarea.php";
-    
+
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        
+
         const tarea = {
             "etiqueta": etiquetaRef.current.value,
             "color": color,
@@ -102,15 +105,23 @@ export default function Tareas({userId}) {
     //####################################################################
     //MOSTRAR TAREAS
     useEffect(() => {
-        
-        fetch(`https://taskify.sergiiosanz.es/mostrarTareas.php?userId=${userId}`)
+        fetch(`https://taskify.sergiiosanz.es/mostrarTareas.php?userId=${userId}&token=${token}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Conexión rechazada por el servidor');
                 }
                 return response.json();
             })
-            .then(data => setTareas(data))
+            .then(data => {
+                if (data.error) {
+                    if (data.error === 'Token incorrecto') {
+                        // Aquí es donde cierras la sesión
+                        sessionStorage.removeItem('token');
+                    }
+                } else {
+                    setTareas(data);
+                }
+            })
             .catch(error => {
                 console.error('Hubo un problema al mostrar las tareas :', error);
             });
@@ -186,7 +197,7 @@ export default function Tareas({userId}) {
 
     //################### ELIMINAR TAREA #################################
     const URL_DELETETAREA = "https://taskify.sergiiosanz.es/eliminarTareas.php";
-    
+
 
     const handleDelete = async (index) => {
         let newTareas = [...tareas];
@@ -414,7 +425,7 @@ export default function Tareas({userId}) {
                             placeholder='Etiqueta de Tarea'
                         />
                         <input type="text" value={tarea.Nombre} onChange={(e) => handleInputChange(index, 'Nombre', e.target.value)} placeholder='Nombre de la Tarea' />
-                        <input type="text" value={tarea.Descripcion} onChange={(e) => handleInputChange(index, 'Descripcion', e.target.value)} placeholder='Descripcion de la Tarea'/>
+                        <input type="text" value={tarea.Descripcion} onChange={(e) => handleInputChange(index, 'Descripcion', e.target.value)} placeholder='Descripcion de la Tarea' />
                         <input type="date" className='date' value={tarea.Fecha} onChange={(e) => handleInputChange(index, 'Fecha', e.target.value)} />
                         <input type="color" className='colorInput' value={tarea.Color} onChange={(e) => handleInputChange(index, 'Color', e.target.value)} list="color-datalist" />
                         <datalist id="color-datalist">
@@ -435,50 +446,50 @@ export default function Tareas({userId}) {
                     </div>
                 ))
                 ) : ( /**CONTENEDOR DE TAREAS  */
-                tareas.length > 0 ? (
-                    tareasOrdenadas.map((tarea, index) => {
-                        const separador = index === 0 || tareasOrdenadas[index - 1].Fecha !== tarea.Fecha ?
-                            <div className='fecha'>{new Date(tarea.Fecha).toLocaleDateString('es-ES')} <hr /></div> : null;
-                        return (
-                            <React.Fragment key={index}>
-                                {separador}
-                                <div className='mostrarTareas'>
-                                    <input type="time" className='time' value={tarea.HoraInicio} onChange={(e) => handleInputChange(index, 'HoraInicio', e.target.value)} />
-                                    <input type="time" className='time' value={tarea.HoraFin} onChange={(e) => handleInputChange(index, 'HoraFin', e.target.value)} />
-                                    <input
-                                        type="text"
-                                        className='etiqueta'
-                                        value={tarea ? tarea.Etiqueta : ''}
-                                        onChange={(e) => handleInputChange(index, 'Etiqueta', e.target.value)}
-                                        placeholder='Etiqueta de Tarea'
-                                    />
-                                    <input type="text" value={tarea.Nombre} onChange={(e) => handleInputChange(index, 'Nombre', e.target.value)} placeholder='Nombre de la Tarea'/>
-                                    <input type="text" value={tarea.Descripcion} onChange={(e) => handleInputChange(index, 'Descripcion', e.target.value)} placeholder='Descripcion de la Tarea' />
-                                    <input type="date" className='date' value={tarea.Fecha} onChange={(e) => handleInputChange(index, 'Fecha', e.target.value)} />
-                                    <input type="color" className='colorInput' value={tarea.Color} onChange={(e) => handleInputChange(index, 'Color', e.target.value)} list="color-datalist" />
-                                    <datalist id="color-datalist">
-                                        {colores.map((color, index) => (
-                                            <option key={index} value={color} />
-                                        ))}
-                                    </datalist>
-                                    <button className="paleta" onClick={() => addColor(index, tarea.Color)} title='Guardar color'><FontAwesomeIcon icon={faPalette} /></button>
-                                    <button className={`botonEstado ${tarea.Estado === 0 ? 'pendiente' : 'completado'}`} onClick={() => handleEstadoChange(index)}>
-                                        {tarea.Estado === 0 ?
-                                            <FontAwesomeIcon icon={faClock} /> :
-                                            <FontAwesomeIcon icon={faCheck} />
-                                        }
-                                    </button>
-                                    <button className="botonEliminar" onClick={() => handleDelete(index)}>
-                                        <FontAwesomeIcon icon={faTrash} />
-                                    </button>
-                                </div>
-                            </React.Fragment>
-                        );
-                    })
-                
-            ) : (
-                <h3 className="alerta alerta-info">No hay tareas asignadas.</h3>
-            ))}
+                    tareas.length > 0 ? (
+                        tareasOrdenadas.map((tarea, index) => {
+                            const separador = index === 0 || tareasOrdenadas[index - 1].Fecha !== tarea.Fecha ?
+                                <div className='fecha'>{new Date(tarea.Fecha).toLocaleDateString('es-ES')} <hr /></div> : null;
+                            return (
+                                <React.Fragment key={index}>
+                                    {separador}
+                                    <div className='mostrarTareas'>
+                                        <input type="time" className='time' value={tarea.HoraInicio} onChange={(e) => handleInputChange(index, 'HoraInicio', e.target.value)} />
+                                        <input type="time" className='time' value={tarea.HoraFin} onChange={(e) => handleInputChange(index, 'HoraFin', e.target.value)} />
+                                        <input
+                                            type="text"
+                                            className='etiqueta'
+                                            value={tarea ? tarea.Etiqueta : ''}
+                                            onChange={(e) => handleInputChange(index, 'Etiqueta', e.target.value)}
+                                            placeholder='Etiqueta de Tarea'
+                                        />
+                                        <input type="text" value={tarea.Nombre} onChange={(e) => handleInputChange(index, 'Nombre', e.target.value)} placeholder='Nombre de la Tarea' />
+                                        <input type="text" value={tarea.Descripcion} onChange={(e) => handleInputChange(index, 'Descripcion', e.target.value)} placeholder='Descripcion de la Tarea' />
+                                        <input type="date" className='date' value={tarea.Fecha} onChange={(e) => handleInputChange(index, 'Fecha', e.target.value)} />
+                                        <input type="color" className='colorInput' value={tarea.Color} onChange={(e) => handleInputChange(index, 'Color', e.target.value)} list="color-datalist" />
+                                        <datalist id="color-datalist">
+                                            {colores.map((color, index) => (
+                                                <option key={index} value={color} />
+                                            ))}
+                                        </datalist>
+                                        <button className="paleta" onClick={() => addColor(index, tarea.Color)} title='Guardar color'><FontAwesomeIcon icon={faPalette} /></button>
+                                        <button className={`botonEstado ${tarea.Estado === 0 ? 'pendiente' : 'completado'}`} onClick={() => handleEstadoChange(index)}>
+                                            {tarea.Estado === 0 ?
+                                                <FontAwesomeIcon icon={faClock} /> :
+                                                <FontAwesomeIcon icon={faCheck} />
+                                            }
+                                        </button>
+                                        <button className="botonEliminar" onClick={() => handleDelete(index)}>
+                                            <FontAwesomeIcon icon={faTrash} />
+                                        </button>
+                                    </div>
+                                </React.Fragment>
+                            );
+                        })
+
+                    ) : (
+                        <h3 className="alerta alerta-info">No hay tareas asignadas.</h3>
+                    ))}
             </div>
         </div>
     )

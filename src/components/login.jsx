@@ -62,6 +62,8 @@ export default function Login(props) {
                 setId(() => respuestaJson.id);
                 props.acceder(respuestaJson.isLogged);
                 sessionStorage.setItem('isLogged', 'true');
+                sessionStorage.setItem('token', respuestaJson.token);
+                sessionStorage.setItem('userId', respuestaJson.id);
             } else {
                 console.error("La respuesta del servidor no es un objeto JSON válido:", respuestaJson);
             }

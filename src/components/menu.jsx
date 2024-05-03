@@ -17,6 +17,8 @@ export default function Menu({ acceder,id }) {
     //LOGOUT
     const handleLogout = () => {
         sessionStorage.removeItem('isLogged');
+        sessionStorage.removeItem('userId');
+        sessionStorage.removeItem('token');
         acceder(false);
     }
     //######################################
@@ -112,7 +114,7 @@ export default function Menu({ acceder,id }) {
                 <div className="line" style={lineStyle} />
             </nav>
             <div>
-                {activePage === 'Tareas' && <Tareas userId={id} />}
+                {activePage === 'Tareas' && <Tareas userId={id}/>}
                 {activePage === 'Tareas Completadas' && <TareasCompletadas userId={id} />}
                 {activePage === 'Tareas Pendientes' && <TareasSinCompletar userId={id} />}
                 {activePage === 'Calendario' && <Calendario userId={id} />}
