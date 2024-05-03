@@ -16,6 +16,7 @@ export default function Menu({ acceder,id }) {
     };
     //LOGOUT
     const handleLogout = () => {
+        sessionStorage.removeItem('isLogged');
         acceder(false);
     }
     //######################################
