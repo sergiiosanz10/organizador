@@ -1,44 +1,72 @@
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faClock, faCheck } from '@fortawesome/free-solid-svg-icons'
+
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction';
 import esLocale from '@fullcalendar/core/locales/es';
-import { useState, useEffect } from 'react';
 import '../styles/calendario.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faClock, faCheck } from '@fortawesome/free-solid-svg-icons'
 
 
-export default function Calendario({userId}) {
+export default function Calendario() {
     const [events, setEvents] = useState([]);
     const [showModal, setShowModal] = useState(false);
 
-    useEffect(() => {
-        
-        fetch(`https://taskify.sergiiosanz.es/mostrarTareas.php?userId=${userId}`)
-            .then(response => response.json())
-            .then(data => {
-                const tasks = data.map(task => {
-                    return {
-                        id: task.tareaId,
-                        Etiqueta: task.Etiqueta,
-                        title: task.Nombre,
-                        Descripcion: task.Descripcion,
-                        Fecha: task.Fecha,
-                        HoraInicio: task.HoraInicio,
-                        HoraFin: task.HoraFin,
-                        estado: task.Estado,
-                        backgroundColor: task.Color,
-                        start: `${task.Fecha}T${task.HoraInicio}`,
-                        end: `${task.Fecha}T${task.HoraFin}`,
-                    };
-                });
-                setEvents(tasks);
-                console.log(tasks);
-            })
-            .catch(error => {
-                console.error('Ha habido un problema con tu operación de fetch:', error);
+        const userId = sessionStorage.getItem('userId');
+        const token = sessionStorage.getItem('token');
+
+const navigate = useNavigate();
+
+useEffect(() => {
+    const handleStorageChange = (e) => {
+        if (e.key === 'userId' && e.storageArea === sessionStorage) {
+            const sessionStorageUserId = sessionStorage.getItem('userId');
+            if (sessionStorageUserId !== token) {
+                // Cerrar la sesión
+                sessionStorage.removeItem('token');
+                sessionStorage.removeItem('userId');
+                sessionStorage.removeItem('isLogged');
+                window.location.reload();
+                navigate('/login');
+            }
+        }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+
+    fetch(`https://taskify.sergiiosanz.es/mostrarTareas.php?userId=${userId}&token=${token}`)
+        .then(response => response.json())
+        .then(data => {
+            const tasks = data.map(task => {
+                return {
+                    id: task.tareaId,
+                    Etiqueta: task.Etiqueta,
+                    title: task.Nombre,
+                    Descripcion: task.Descripcion,
+                    Fecha: task.Fecha,
+                    HoraInicio: task.HoraInicio,
+                    HoraFin: task.HoraFin,
+                    estado: task.Estado,
+                    backgroundColor: task.Color,
+                    start: `${task.Fecha}T${task.HoraInicio}`,
+                    end: `${task.Fecha}T${task.HoraFin}`,
+                };
             });
-    }, []);
+            setEvents(tasks);
+            console.log(tasks);
+        })
+        .catch(error => {
+            console.error('Ha habido un problema con tu operación de fetch:', error);
+        });
+
+    // Limpiar el evento al desmontar el componente
+    return () => {
+        window.removeEventListener('storage', handleStorageChange);
+    };
+}, [token, userId, navigate]);
 
     const enviarData = async (url, data) => {
         try {

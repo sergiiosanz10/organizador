@@ -18,8 +18,6 @@ function App() {
       <Routes>
         <Route path="/login" element={isLogged ? <Navigate to="/" /> : <Login setId={setId} acceder={acceder} />} />
         <Route path="/" element={!isLogged ? <Navigate to="/login" /> : <Menu id={id}  acceder={acceder}  />} />
-        <Route path="/tareas" element={isLogged ? <Navigate to="/tareas" /> : <Tareas />} />
-
       </Routes>
     </Router>
   );
