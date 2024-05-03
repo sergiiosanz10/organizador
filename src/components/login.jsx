@@ -39,7 +39,8 @@ export default function Login(props) {
 
     //PARA GUARDAR EL INICIO DE SESIÓN
     useEffect(() => {
-        if (props.isLogged) {
+        const isLogged = sessionStorage.getItem('isLogged');
+        if (isLogged === 'true') {
             props.acceder(true);
         }
     }, [props]);
@@ -60,6 +61,7 @@ export default function Login(props) {
             if (respuestaJson && typeof respuestaJson === 'object' && respuestaJson.id) {
                 setId(() => respuestaJson.id);
                 props.acceder(respuestaJson.isLogged);
+                sessionStorage.setItem('isLogged', 'true');
             } else {
                 console.error("La respuesta del servidor no es un objeto JSON válido:", respuestaJson);
             }

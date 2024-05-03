@@ -6,6 +6,9 @@ import Menu from './components/menu';
 import Tareas from './components/tareas';
 
 function App() {
+
+  const [token, setToken] = useState(null);
+
   const [isLogged, setIsLogged] = useState(false);
   const [id,setId] = useState(0);
   const acceder = (estado) => {
@@ -15,7 +18,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={isLogged ? <Navigate to="/" /> : <Login setId={setId} acceder={acceder} />} />
+        <Route path="/login" element={isLogged ? <Navigate to="/" /> : <Login setId={setId} acceder={acceder} setToken={setToken} />} />
         <Route path="/" element={!isLogged ? <Navigate to="/login" /> : <Menu id={id}  acceder={acceder}  />} />
         <Route path="/tareas" element={isLogged ? <Navigate to="/tareas" /> : <Tareas />} />
 
