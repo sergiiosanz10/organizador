@@ -84,18 +84,18 @@ export default function Tareas() {
         setShowModal(false);
 
         // Solicita la lista actualizada de tareas al servidor
-        fetch(`https://taskify.sergiiosanz.es/mostrarTareas.php?userId=${userId}`)
+        fetch(`https://taskify.sergiiosanz.es/mostrarTareas.php?userId=${userId}&token=${token}`)
             .then(response => response.json())
             .then(data => setTareas(data));
 
         //Actualiza las etiquetas
-        fetch(`https://taskify.sergiiosanz.es/etiquetas.php?userId=${userId}`)
+        fetch(`https://taskify.sergiiosanz.es/etiquetas.php?userId=${userId}&token=${token}`)
             .then(response => response.json())
             .then(data => setEtiquetas(data));
 
         // Si actualmente estás filtrando por una etiqueta, actualiza las tareas filtradas
         if (serverResponse) {
-            fetch(`https://taskify.sergiiosanz.es/filtrarEtiquetas.php?etiqueta=${etiqueta}&userId=${userId}`)
+            fetch(`https://taskify.sergiiosanz.es/filtrarEtiquetas.php?etiqueta=${etiqueta}&userId=${userId}&token=${token}`)
                 .then(response => response.json())
                 .then(data => {
                     setTareas(data);
@@ -213,7 +213,7 @@ useEffect(() => {
         };
         await enviarData(URL_MODITAREA, data);
 
-        fetch(`https://taskify.sergiiosanz.es/etiquetas.php?userId=${userId}`)
+        fetch(`https://taskify.sergiiosanz.es/etiquetas.php?userId=${userId}&token=${token}`)
             .then(response => response.json())
             .then(data => setEtiquetas(data));
     };
@@ -238,12 +238,12 @@ useEffect(() => {
         await enviarData(URL_DELETETAREA, data);
 
         // Solicita la lista actualizada de tareas al servidor
-        fetch(`https://taskify.sergiiosanz.es/mostrarTareas.php?userId=${userId}`)
+        fetch(`https://taskify.sergiiosanz.es/mostrarTareas.php?userId=${userId}&token=${token}`)
             .then(response => response.json())
             .then(data => setTareas(data));
 
         //Actualiza las etiquetas
-        fetch(`https://taskify.sergiiosanz.es/etiquetas.php?userId=${userId}`)
+        fetch(`https://taskify.sergiiosanz.es/etiquetas.php?userId=${userId}&token=${token}`)
             .then(response => response.json())
             .then(data => setEtiquetas(data));
     };
@@ -285,7 +285,7 @@ useEffect(() => {
     };
 
     useEffect(() => {
-        fetch(`https://taskify.sergiiosanz.es/mostrarTareas.php?userId=${userId}`)
+        fetch(`https://taskify.sergiiosanz.es/mostrarTareas.php?userId=${userId}&token=${token}`)
             .then(response => response.json())
             .then(data => setEtiquetas(data))
             .catch(error => console.error('Error:', error));
@@ -299,13 +299,13 @@ useEffect(() => {
 
     const handleEtiquetaClick = async (etiqueta) => {
         // Aquí puedes enviar el dato de la etiqueta al servidor
-        const response = await fetch(`https://taskify.sergiiosanz.es/filtrarEtiquetas.php?etiqueta=${etiqueta}&userId=${userId}`);
+        const response = await fetch(`https://taskify.sergiiosanz.es/filtrarEtiquetas.php?etiqueta=${etiqueta}&userId=${userId}&token=${token}`);
         const data = await response.json();
         setServerResponse(data);
         console.log(data);
 
         // Actualiza las tareas filtradas
-        fetch(`https://taskify.sergiiosanz.es/filtrarEtiquetas.php?etiqueta=${etiqueta}&userId=${userId}`)
+        fetch(`https://taskify.sergiiosanz.es/filtrarEtiquetas.php?etiqueta=${etiqueta}&userId=${userId}&token=${token}`)
             .then(response => response.json())
             .then(data => {
                 setTareas(data);
@@ -333,7 +333,7 @@ useEffect(() => {
         setServerResponse(updatedServerResponse);
 
         // Actualiza las etiquetas
-        fetch(`https://taskify.sergiiosanz.es/etiquetas.php?userId=${userId}`)
+        fetch(`https://taskify.sergiiosanz.es/etiquetas.php?userId=${userId}&token=${token}`)
             .then(response => response.json())
             .then(data => setEtiquetas(data));
     };
