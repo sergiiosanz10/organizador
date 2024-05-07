@@ -27,7 +27,7 @@ export default function Login(props) {
     const handleClick = () => {
         setLoginVisible(!isLoginVisible);
     };
-    const {setId} = props;
+    const { setId } = props;
 
     //################################
 
@@ -46,18 +46,18 @@ export default function Login(props) {
     }, [props]);
 
     //##################################################
-    
+
     const handleLogin = async () => {
         const data = {
             "usuario": refUsuario.current.value,
             "password": refPassword.current.value
         };
         console.log(data);
-        
+
         try {
             const respuestaJson = await enviarData(URL_LOGIN, data);
             console.log("Respuesta del servidor: ", respuestaJson);
-    
+
             // Verifica si la respuesta es un objeto JSON válido
             if (respuestaJson && typeof respuestaJson === 'object' && respuestaJson.id) {
                 setId(() => respuestaJson.id);
@@ -100,13 +100,12 @@ export default function Login(props) {
     //######################################################################
     return (
         <div>
-            <span className="inicio"><span className='taski'>Taski</span>fy</span>
             {isLoginVisible ? (
                 <div className="login">
                     <div className="row">
-                        <div className="content" style={{ position: 'relative', zIndex: 1 }}>
-                            <div className="card">
+                        <div className="content">
                                 <div className="card-header">
+                                    <span className="inicio"><span className='taski'>Taski</span>fy</span>
                                     <h1>Iniciar sesión</h1>
                                 </div>
                                 <div className="card-body">
@@ -140,18 +139,19 @@ export default function Login(props) {
                                         <button type="button" className="btn" onClick={handleLogin}>
                                             Iniciar sesión
                                         </button>
-                                   
+
                                         <button type="button" className="btn" onClick={handleClick}>
                                             Registrarse
                                         </button>
                                     </div>
                                 </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             ) : (
+
                 <form id="registro" className="input-group" onSubmit={handleRegistro}>
+                    <span className="inicio"><span className='taski'>Taski</span>fy</span>
                     <div className="row">
                         <div className="content">
                             <div className="card">
@@ -160,16 +160,16 @@ export default function Login(props) {
                                 </div>
                                 <div className="card-body">
                                     <div className="input-group">
-                                        <input id="nombre" className="form-control" type="text" placeholder=" Introduzca su nombre" ref={refNombre} required/>
+                                        <input id="nombre" className="form-control" type="text" placeholder=" Introduzca su nombre" ref={refNombre} required />
                                     </div>
                                     <div className="input-group">
-                                        <input id="apellidos" className="form-control" type="text" placeholder=" Introduzca sus apellidos" ref={refApellidos} required/>
+                                        <input id="apellidos" className="form-control" type="text" placeholder=" Introduzca sus apellidos" ref={refApellidos} required />
                                     </div>
                                     <div className="input-group">
-                                        <input id="usuario" className="form-control" type="text" placeholder=" Introduzca su usuario" ref={refUsuario} required/>
+                                        <input id="usuario" className="form-control" type="text" placeholder=" Introduzca su usuario" ref={refUsuario} required />
                                     </div>
                                     <div className="input-group">
-                                        <input id="contraseña" className="form-control" type="password" placeholder=" Introduzca su contraseña" ref={refPassword} required/>
+                                        <input id="contraseña" className="form-control" type="password" placeholder=" Introduzca su contraseña" ref={refPassword} required />
                                     </div>
                                     <div className="input-group">
                                         <input type="submit" id="botonregistro" className="btn" value="Registrarse" />
