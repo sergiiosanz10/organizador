@@ -29,8 +29,7 @@ body {
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     margin: 20px;
-
-    height: 500px;
+    height: 570px;
 }
 
 .login {
@@ -51,6 +50,7 @@ body {
     background-size: cover;
     background-position: center;
     margin-bottom: 0;
+    background-color: #1f1f1f;
 }
 
 .h1registro {

@@ -3,8 +3,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons'
 
-const URL_LOGIN = "https://taskify.sergiiosanz.es/login.php";
-const URL_REGISTRO = "https://taskify.sergiiosanz.es/registrar.php";
+const URL_LOGIN = "https://tfg.sergiiosanz.es/login.php";
+const URL_REGISTRO = "https://tfg.sergiiosanz.es/registrar.php";
 
 const enviarData = async (url, data) => {
 
@@ -104,58 +104,58 @@ export default function Login(props) {
                 <div className="login">
                     <div className="row">
                         <div className="content">
-                                <div className="card-header">
-                                    <span className="inicio"><span className='taski'>Taski</span>fy</span>
-                                    <h1>Iniciar sesión</h1>
+                            <div className="card-header">
+                                <span className="inicio"><span className='taski'>Taski</span>fy</span>
+                                <h1>Iniciar sesión</h1>
+                            </div>
+                            <div className="card-body">
+                                <div className="input-group">
+                                    <span className="input-group-text" id="basic-addon1">
+                                        <FontAwesomeIcon icon={faUser} />
+                                    </span>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        placeholder="Username"
+                                        aria-label="Username"
+                                        aria-describedby="basic-addon1"
+                                        ref={refUsuario}
+                                    />
                                 </div>
-                                <div className="card-body">
-                                    <div className="input-group">
-                                        <span className="input-group-text" id="basic-addon1">
-                                            <FontAwesomeIcon icon={faUser} />
-                                        </span>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            placeholder="Username"
-                                            aria-label="Username"
-                                            aria-describedby="basic-addon1"
-                                            ref={refUsuario}
-                                        />
-                                    </div>
-                                    <div className="input-group">
-                                        <span className="input-group-text" id="basic-addon1">
-                                            <FontAwesomeIcon icon={faLock} />
-                                        </span>
-                                        <input
-                                            type="password"
-                                            className="form-control"
-                                            placeholder="Password"
-                                            aria-label="Password"
-                                            aria-describedby="basic-addon1"
-                                            ref={refPassword}
-                                        />
-                                    </div>
-                                    <div className="login-button">
-                                        <button type="button" className="btn" onClick={handleLogin}>
-                                            Iniciar sesión
-                                        </button>
+                                <div className="input-group">
+                                    <span className="input-group-text" id="basic-addon1">
+                                        <FontAwesomeIcon icon={faLock} />
+                                    </span>
+                                    <input
+                                        type="password"
+                                        className="form-control"
+                                        placeholder="Password"
+                                        aria-label="Password"
+                                        aria-describedby="basic-addon1"
+                                        ref={refPassword}
+                                    />
+                                </div>
+                                <div className="login-button">
+                                    <button type="button" className="btn" onClick={handleLogin}>
+                                        Iniciar sesión
+                                    </button>
 
-                                        <button type="button" className="btn" onClick={handleClick}>
-                                            Registrarse
-                                        </button>
-                                    </div>
+                                    <button type="button" className="btn" onClick={handleClick}>
+                                        Registrarse
+                                    </button>
                                 </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             ) : (
 
                 <form id="registro" className="input-group" onSubmit={handleRegistro}>
-                    <span className="inicio"><span className='taski'>Taski</span>fy</span>
                     <div className="row">
                         <div className="content">
                             <div className="card">
                                 <div className="card-header">
+                                    <span className="inicio"><span className='taski'>Taski</span>fy</span>
                                     <h1 className="h1registro">Registro</h1>
                                 </div>
                                 <div className="card-body">

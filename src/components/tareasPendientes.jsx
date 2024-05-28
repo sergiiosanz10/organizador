@@ -48,7 +48,7 @@ export default function Pendientes() {
 
         window.addEventListener('storage', handleStorageChange);
 
-        fetch(`https://taskify.sergiiosanz.es/pendientes.php?userId=${userId}&token=${token}`)
+        fetch(`https://tfg.sergiiosanz.es/pendientes.php?userId=${userId}&token=${token}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Conexión rechazada por el servidor');
@@ -77,7 +77,7 @@ export default function Pendientes() {
     }, [token, userId, navigate]);
 
     //CAMBIAR ESTADO DE TAREA ##########################################
-    const URL_MODIESTADO = "https://taskify.sergiiosanz.es/modiEstado.php";
+    const URL_MODIESTADO = "https://tfg.sergiiosanz.es/modiEstado.php";
 
     const handleEstadoChange = async (index) => {
         const newTareas = [...tareas];
@@ -96,7 +96,7 @@ export default function Pendientes() {
 
     //MODIFICAR INPUTS DE TAREA ########################################
 
-    const URL_MODITAREA = "https://taskify.sergiiosanz.es/modiTarea.php";
+    const URL_MODITAREA = "https://tfg.sergiiosanz.es/modiTarea.php";
 
     const handleInputChange = async (index, field, value) => {
         const newTareas = [...tareas];
@@ -119,7 +119,7 @@ export default function Pendientes() {
     //####################################################################
 
     //################### ELIMINAR TAREA #################################
-    const URL_DELETETAREA = "https://taskify.sergiiosanz.es/eliminarTareas.php";
+    const URL_DELETETAREA = "https://tfg.sergiiosanz.es/eliminarTareas.php";
     
     const handleDelete = async (index) => {
         let newTareas = [...tareas];
@@ -130,7 +130,7 @@ export default function Pendientes() {
         await enviarData(URL_DELETETAREA, data);
 
         // Solicita la lista actualizada de tareas al servidor
-        fetch(`https://taskify.sergiiosanz.es/mostrarTareas.php?userId=${userId}`)
+        fetch(`https://tfg.sergiiosanz.es/mostrarTareas.php?userId=${userId}`)
             .then(response => response.json())
             .then(data => setTareas(data));
     };
